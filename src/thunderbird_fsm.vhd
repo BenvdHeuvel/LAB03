@@ -86,23 +86,74 @@ library ieee;
   use ieee.numeric_std.all;
  
 entity thunderbird_fsm is 
---  port(
-	
---  );
+
+    port (
+        i_clk      : in  std_logic;
+        i_reset    : in  std_logic;
+        i_left     : in  std_logic;
+        i_right    : in  std_logic;
+        o_lights_L : out std_logic_vector(2 downto 0);
+        o_lights_R : out std_logic_vector(2 downto 0)
+    );
+
 end thunderbird_fsm;
 
 architecture thunderbird_fsm_arch of thunderbird_fsm is 
 
 -- CONSTANTS ------------------------------------------------------------------
-  
+ 
+    signal f_Q      : std_logic_vector(2 downto 0) := "000";
+    signal f_Q_next : std_logic_vector(2 downto 0) := "000";
+
 begin
 
-	-- CONCURRENT STATEMENTS --------------------------------------------------------	
-	
-    ---------------------------------------------------------------------------------
-	
-	-- PROCESSES --------------------------------------------------------------------
+
+
+
+f_Q_next(2) <= 
+    (not f_Q(2) and not f_Q(1) and not f_Q(0) and i_left) or
+    (f_Q(2) and not f_Q(1) and not f_Q(0)) or
+    (f_Q(2) and not f_Q(1) and f_Q(0)) or
+    (f_Q(2) and f_Q(1) and not f_Q(0) and i_left) or
+    ((i_left and i_right) and ((f_Q = "000") or (f_Q = "111")));
+
+f_Q_next(1) <= 
+    (f_Q(2) and not f_Q(1) and f_Q(0)) or
+    (not f_Q(2) and not f_Q(1) and f_Q(0)) or
+    (not f_Q(2) and f_Q(1) and not f_Q(0)) or
+    ((i_left and i_right) and (f_Q = "111"));
+
+f_Q_next(0) <= 
+    (f_Q(2) and not f_Q(1) and not f_Q(0)) or
+    (not f_Q(2) and not f_Q(1) and not f_Q(0) and i_right) or
+    (not f_Q(2) and not f_Q(1) and f_Q(0)) or
+    (not f_Q(2) and f_Q(1) and not f_Q(0)) or
+    ((i_left and i_right) and (f_Q = "111"));
+
+
+
+    o_lights_L <= "000" when f_Q = "000" else
+                  "001" when f_Q = "100" else
+                  "011" when f_Q = "101" else
+                  "111" when f_Q = "110" else
+                  "111" when f_Q = "111" else "000";
     
-	-----------------------------------------------------					   
+    
+    o_lights_R <= "000" when f_Q = "000" else
+                  "001" when f_Q = "001" else
+                  "011" when f_Q = "010" else
+                  "111" when f_Q = "011" else
+                  "111" when f_Q = "111" else "000";
+                  
+    state_reg : process(i_clk, i_reset)
+    begin
+        if i_reset = '1' then
+            f_Q <= "000";
+        elsif rising_edge(i_clk) then
+            f_Q <= f_Q_next;
+        end if;
+    end process state_reg;
+
+
 				  
 end thunderbird_fsm_arch;

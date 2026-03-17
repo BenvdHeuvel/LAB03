@@ -1,0 +1,60 @@
+#-----------------------------------------------------------
+# Vivado v2024.2 (64-bit)
+# SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
+# IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
+# SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
+# Start of session at: Mon Mar 16 23:52:31 2026
+# Process ID         : 28092
+# Current directory  : C:/Users/C28Benjamin.Van_den/ECE_281/LAB03/thunderbird.runs/synth_1
+# Command line       : vivado.exe -log top_basys3.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top_basys3.tcl
+# Log file           : C:/Users/C28Benjamin.Van_den/ECE_281/LAB03/thunderbird.runs/synth_1/top_basys3.vds
+# Journal file       : C:/Users/C28Benjamin.Van_den/ECE_281/LAB03/thunderbird.runs/synth_1\vivado.jou
+# Running On         : C28-2TK416010J
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 22631
+# Processor Detail   : AMD Ryzen 7 PRO 7840U w/ Radeon 780M Graphics  
+# CPU Frequency      : 3294 MHz
+# CPU Physical cores : 8
+# CPU Logical cores  : 16
+# Host memory        : 33585 MB
+# Swap memory        : 5100 MB
+# Total Virtual      : 38685 MB
+# Available Virtual  : 14451 MB
+#-----------------------------------------------------------
+INFO: [Common 17-1239] XILINX_LOCAL_USER_DATA is set to 'no'.
+source top_basys3.tcl -notrace
+Command: read_checkpoint -auto_incremental -incremental C:/Users/C28Benjamin.Van_den/ECE_281/LAB03/thunderbird.srcs/utils_1/imports/synth_1/top_basys3.dcp
+INFO: [Vivado 12-5825] Read reference checkpoint from C:/Users/C28Benjamin.Van_den/ECE_281/LAB03/thunderbird.srcs/utils_1/imports/synth_1/top_basys3.dcp for incremental synthesis
+INFO: [Vivado 12-7989] Please ensure there are no constraint changes
+Command: synth_design -top top_basys3 -part xc7a35tcpg236-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Device 21-403] Loading part xc7a35tcpg236-1
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 14904
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 953.242 ; gain = 468.227
+---------------------------------------------------------------------------------
+ERROR: [Synth 8-9493] found '0' definitions of operator "=", cannot determine exact overloaded matching definition for "=" [C:/Users/C28Benjamin.Van_den/ECE_281/LAB03/src/thunderbird_fsm.vhd:118]
+ERROR: [Synth 8-944] 0 definitions of operator "or" match here [C:/Users/C28Benjamin.Van_den/ECE_281/LAB03/src/thunderbird_fsm.vhd:118]
+ERROR: [Synth 8-9493] found '0' definitions of operator "=", cannot determine exact overloaded matching definition for "=" [C:/Users/C28Benjamin.Van_den/ECE_281/LAB03/src/thunderbird_fsm.vhd:118]
+ERROR: [Synth 8-9493] found '0' definitions of operator "=", cannot determine exact overloaded matching definition for "=" [C:/Users/C28Benjamin.Van_den/ECE_281/LAB03/src/thunderbird_fsm.vhd:124]
+ERROR: [Synth 8-944] 0 definitions of operator "and" match here [C:/Users/C28Benjamin.Van_den/ECE_281/LAB03/src/thunderbird_fsm.vhd:124]
+ERROR: [Synth 8-9493] found '0' definitions of operator "=", cannot determine exact overloaded matching definition for "=" [C:/Users/C28Benjamin.Van_den/ECE_281/LAB03/src/thunderbird_fsm.vhd:131]
+ERROR: [Synth 8-944] 0 definitions of operator "and" match here [C:/Users/C28Benjamin.Van_den/ECE_281/LAB03/src/thunderbird_fsm.vhd:131]
+INFO: [Synth 8-11252] unit 'thunderbird_fsm_arch' is ignored due to previous errors [C:/Users/C28Benjamin.Van_den/ECE_281/LAB03/src/thunderbird_fsm.vhd:159]
+INFO: [Synth 8-10443] VHDL file 'C:/Users/C28Benjamin.Van_den/ECE_281/LAB03/src/thunderbird_fsm.vhd' is ignored due to errors
+ERROR: [Synth 8-12189] Failed to read vhdl 'C:/Users/C28Benjamin.Van_den/ECE_281/LAB03/src/thunderbird_fsm.vhd'
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 1052.406 ; gain = 567.391
+---------------------------------------------------------------------------------
+RTL Elaboration failed
+INFO: [Common 17-83] Releasing license: Synthesis
+12 Infos, 0 Warnings, 0 Critical Warnings and 9 Errors encountered.
+synth_design failed
+ERROR: [Common 17-69] Command failed: Synthesis failed - please see the console or run log file for details
+INFO: [Common 17-206] Exiting Vivado at Mon Mar 16 23:53:15 2026...
